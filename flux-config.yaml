@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: my-node-app
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: my-node-app
+      sourceRef:
+        kind: GitRepository
+        name: my-node-app-repo
+      version: 0.1.0
+  interval: 1m
+  values:
+    image:
+      repository: localhost:5000/my-node-app
+      tag: latest
